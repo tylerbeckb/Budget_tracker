@@ -3,13 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+      <title>{{ title }}</title>
+    {% else %}
+      <title> No title specified</title>
+    {% endif %}
   </head>
 
   <body>
     <!--Navigation Bar-->
     <nav>
-      <a href=homepage></a>
+      <a href=homepage>Home</a>
     </nav>
+    <!--Content-->
+    <div>
+      {% block content %}{% endblock %}
+    </div>
   </body>
 
   <!--Footer-->
