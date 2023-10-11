@@ -11,7 +11,9 @@ nav a {
     float: left;
     text-align: center;
     color: black;
-    padding: 20px;
+    padding: 5px;
+    padding-left: 30px;
+    padding-right: 5%;
     text-decoration: none;
 }
 
