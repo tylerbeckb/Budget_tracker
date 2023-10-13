@@ -2,26 +2,44 @@
 {% block content %}
   <h1>Income and Expenditures</h1>
   <br>
-  <Section class="halfLeft">
+  <section class="halfLeft">
     <div class="inForm">
-      <h3>Adding Income</h3>
+      <h3>Add Income</h3>
       <div>
         <form method="POST" name="income">
-          <fieldset>
-            {{form.hidden_tag()}}
-              <p>Enter the name of the income</p>
-              {{ form.name }} <br> <br>
-              <p>Enter the income amount</p>
-              {{ form.amount }} <br> <br>
-              {% if form.amount.errors %}
-                {% for error in form.amount.errors %}
-                {{ error }}
-                {% endfor %}
-              {% endif %}
-              {{ form.submit()}}
-          </fieldset>
+          {{ inForm.hidden_tag() }}
+            <p>Enter the name of the income</p>
+            {{ inForm.name }} <br> <br>
+            <p>Enter the income amount</p>
+            {{ inForm.amount }} <br> <br>
+            {% if inForm.amount.errors %}
+              {% for error in inForm.amount.errors %}
+              {{ error }}
+              {% endfor %}
+            {% endif %}
+            {{ inForm.submit()}}
         </form>
       </div>
     </div>
-  </Section>
+  </section>
+  <section class="halfRight">
+    <div class="exForm">
+      <h3>Add Expenditure</h3>
+      <div>
+        <form method="POST" name="expenditure">
+          {{ exForm.hidden_tag() }}
+            <p>Enter the name of the expenditure</p>
+            {{ exForm.name }} <br> <br>
+            <p>Enter the expenditure amount</p>
+            {{ exForm.amount }} <br> <br>
+            {% if exForm.amount.errors %}
+              {% for error in exForm.amount.errors %}
+              {{ error }}
+              {% endfor %}
+            {% endif %}
+            {{ exForm.submit()}}
+        </form>
+      </div>
+    </div>
+  </section>
 {% endblock %}

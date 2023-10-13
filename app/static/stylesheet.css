@@ -40,7 +40,8 @@ nav a:hover {
 
 .halfRight {
     float: left;
-    width: 50%;
+    width: 47%;
+    margin-right: 3%;
 }
 
 /* Income form */
@@ -48,5 +49,11 @@ nav a:hover {
 .inForm {
     background-color: aquamarine;
     padding: 5%;
+    text-align: center;
+}
+
+.exForm {
+    padding: 5%;
+    background-color: coral;
     text-align: center;
 }
