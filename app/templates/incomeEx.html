@@ -2,25 +2,18 @@
 {% block content %}
   <h1>Income and Expenditures</h1>
   <br>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#incomeForm">Input Income</button>
-  <div class="modal" id="incomeForm">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Adding Income</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <form action="" method="post" name="income">
-            {{form.hidden_tag()}}
-           
-            <p>
-              {{ form.number1 }} <br>
-            </p>
-            <p><input type="submit" value="Incomes"></p>
-          </form>
-        </div>
-      </div>
-    </div>
+  <div>
+    <h3>Adding Income</h3>
+    <p>Click to reveal</p>
+    <form method="POST" name="income">
+      {{form.hidden_tag()}}
+        {{ form.number1 }} <br>
+        {% if form.number1.errors %}
+          {% for error in form.number1.errors %}
+          {{ error }}
+          {% endfor %}
+        {% endif %}
+        {{ form.submit()}}
+    </form>
   </div>
 {% endblock %}
