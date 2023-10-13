@@ -2,21 +2,26 @@
 {% block content %}
   <h1>Income and Expenditures</h1>
   <br>
-  <div>
-    <h3>Adding Income</h3>
-    <p>Click to reveal</p>
-    <form method="POST" name="income">
-      {{form.hidden_tag()}}
-        <p>Enter the name of the income</p>
-        {{ form.name }} <br> <br>
-        <p>Enter the income amount</p>
-        {{ form.amount }} <br> <br>
-        {% if form.amount.errors %}
-          {% for error in form.amount.errors %}
-          {{ error }}
-          {% endfor %}
-        {% endif %}
-        {{ form.submit()}}
-    </form>
-  </div>
+  <Section class="halfLeft">
+    <div class="inForm">
+      <h3>Adding Income</h3>
+      <div>
+        <form method="POST" name="income">
+          <fieldset>
+            {{form.hidden_tag()}}
+              <p>Enter the name of the income</p>
+              {{ form.name }} <br> <br>
+              <p>Enter the income amount</p>
+              {{ form.amount }} <br> <br>
+              {% if form.amount.errors %}
+                {% for error in form.amount.errors %}
+                {{ error }}
+                {% endfor %}
+              {% endif %}
+              {{ form.submit()}}
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </Section>
 {% endblock %}
