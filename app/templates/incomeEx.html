@@ -8,16 +8,16 @@
       <div>
         <form method="POST" name="income">
           {{ inForm.hidden_tag() }}
-            <p>Enter the name of the income</p>
-            {{ inForm.name }} <br> <br>
-            <p>Enter the income amount</p>
-            {{ inForm.amount }} <br> <br>
-            {% if inForm.amount.errors %}
-              {% for error in inForm.amount.errors %}
-              {{ error }}
-              {% endfor %}
-            {% endif %}
-            {{ inForm.submit()}}
+          <p>Enter the name of the income</p>
+          {{ inForm.name1 }} <br> <br>
+          <p>Enter the income amount</p>
+          {{ inForm.amount1 }} <br> <br>
+          {% if inForm.amount1.errors %}
+            {% for error in inForm.amount1.errors %}
+            {{ error }}
+            {% endfor %}
+          {% endif %}
+          <input type="submit" value="Submit" class="btn btn-success">
         </form>
       </div>
     </div>
@@ -28,16 +28,16 @@
       <div>
         <form method="POST" name="expenditure">
           {{ exForm.hidden_tag() }}
-            <p>Enter the name of the expenditure</p>
-            {{ exForm.name }} <br> <br>
-            <p>Enter the expenditure amount</p>
-            {{ exForm.amount }} <br> <br>
-            {% if exForm.amount.errors %}
-              {% for error in exForm.amount.errors %}
-              {{ error }}
-              {% endfor %}
-            {% endif %}
-            {{ exForm.submit()}}
+          <p>Enter the name of the expenditure</p>
+          {{ exForm.name2 }} <br> <br>
+          <p>Enter the expenditure amount</p>
+          {{ exForm.amount2 }} <br> <br>
+          {% if exForm.amount2.errors %}
+            {% for error in exForm.amount2.errors %}
+            {{ error }}
+            {% endfor %}
+          {% endif %}
+          <input type="submit" value="Submit" class="btn btn-success">
         </form>
       </div>
     </div>
