@@ -7,9 +7,12 @@
     <p>Click to reveal</p>
     <form method="POST" name="income">
       {{form.hidden_tag()}}
-        {{ form.number1 }} <br>
-        {% if form.number1.errors %}
-          {% for error in form.number1.errors %}
+        <p>Enter the name of the income</p>
+        {{ form.name }} <br> <br>
+        <p>Enter the income amount</p>
+        {{ form.amount }} <br> <br>
+        {% if form.amount.errors %}
+          {% for error in form.amount.errors %}
           {{ error }}
           {% endfor %}
         {% endif %}
