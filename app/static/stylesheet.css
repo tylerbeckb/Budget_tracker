@@ -34,26 +34,40 @@ nav a:hover {
 
 .halfLeft {
     float: left;
-    width: 47%;
+    width: 45.5%;
     margin-left: 3%;
+    margin-right: 1.5%;
 }
 
 .halfRight {
     float: left;
-    width: 47%;
+    width: 45.5%;
     margin-right: 3%;
+    margin-left: 1.5%;
 }
 
 /* Income form */
 
 .inForm {
-    background-color: aquamarine;
+    background-color: rgb(60, 45, 225);
     padding: 5%;
     text-align: center;
+    margin-bottom: 15%;
 }
 
 .exForm {
     padding: 5%;
-    background-color: coral;
+    background-color: rgb(94, 184, 243);
+    text-align: center;
+    margin-bottom: 15%;
+}
+
+.background {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+}
+
+h1 {
     text-align: center;
 }
