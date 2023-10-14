@@ -2,14 +2,19 @@
 {% block content %}
   <h1>Income and Expenditures</h1>
   <br>
+
+  <!--Left Side-->
   <section class="halfLeft">
+    <!--Income Form-->
     <div class="inForm">
       <h3>Add Income</h3>
       <div>
         <form method="POST" name="income">
           {{ inForm.hidden_tag() }}
+          <!--Name-->
           <p>Enter the name of the income</p>
           {{ inForm.name1 }} <br> <br>
+          <!--Amount-->
           <p>Enter the income amount</p>
           {{ inForm.amount1 }} <br> <br>
           {% if inForm.amount1.errors %}
@@ -22,11 +27,12 @@
       </div>
     </div>
 
-    <table>
-      <tr>
+    <!--Income Table-->
+    <table class="table table-striped">
+      <thead>
         <th>Name</th>
         <th>Amount</th>
-      </tr>
+      </thead>
       {% for income in incomes %}
       <tr>
         <td>{{ income.name }}</td>
@@ -35,14 +41,19 @@
       {% endfor %}
     </table>
   </section>
+
+  <!--Right SIde-->
   <section class="halfRight">
+    <!--Expenditure Form-->
     <div class="exForm">
       <h3>Add Expenditure</h3>
       <div>
         <form method="POST" name="expenditure">
           {{ exForm.hidden_tag() }}
+          <!--Name-->
           <p>Enter the name of the expenditure</p>
           {{ exForm.name2 }} <br> <br>
+          <!--Amount-->
           <p>Enter the expenditure amount</p>
           {{ exForm.amount2 }} <br> <br>
           {% if exForm.amount2.errors %}
@@ -54,5 +65,19 @@
         </form>
       </div>
     </div>
+
+    <!--Expenditure Table-->
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Amount</th>
+      </thead>
+      {% for expenditure in expenditures %}
+      <tr>
+        <td>{{ expenditure.name }}</td>
+        <td>{{ expenditure.amount }}</td>
+      </tr>
+      {% endfor %}
+    </table>
   </section>
 {% endblock %}
