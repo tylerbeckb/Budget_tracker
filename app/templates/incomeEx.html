@@ -21,6 +21,19 @@
         </form>
       </div>
     </div>
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+      </tr>
+      {% for income in incomes %}
+      <tr>
+        <td>{{ income.name }}</td>
+        <td>{{ income.amount }}</td>
+      </tr>
+      {% endfor %}
+    </table>
   </section>
   <section class="halfRight">
     <div class="exForm">

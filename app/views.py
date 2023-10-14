@@ -12,6 +12,9 @@ def index():
 def incomeEx():
     inForm = IncomeForm()
     exForm = ExpenditureForm()
+
+    incomes = Incomes.query.all() 
+
     if inForm.validate_on_submit():
         name1 = request.form['name1']
         amount1 = request.form['amount1']
@@ -21,4 +24,5 @@ def incomeEx():
     return render_template('incomeEx.html', 
                            title='Income & Expentitures', 
                            inForm=inForm,
-                           exForm=exForm)
+                           exForm=exForm,
+                           incomes=incomes)
