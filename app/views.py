@@ -1,7 +1,7 @@
 from app.models import Incomes, Expenditures
 from flask import render_template, request, redirect, url_for
 from app import app, db
-from .forms import IncomeForm, ExpenditureForm
+from .forms import IncomeForm, ExpenditureForm, EditIn
 
 
 @app.route('/')
@@ -12,10 +12,10 @@ def index():
 def incomeEx():
     inForm = IncomeForm()
     exForm = ExpenditureForm()
+    editIn = EditIn()
 
     incomes = Incomes.query.all() 
     expenditures = Expenditures.query.all()
-
     # Writes income data to Incomes db
     if inForm.validate_on_submit():
         name1 = request.form['name1']
@@ -32,10 +32,20 @@ def incomeEx():
         db.session.add(record)
         db.session.commit()
         return redirect(url_for('incomeEx'))
+    missing = not None
+    if editIn.validate_on_submit():
+        editName = request.form['editName']
+        missing = Incomes.query.filter_by(name=editName).first()
+        if missing != None:
+            missing.name = request.form['newName']
+            missing.amount = request.form['newAmount']
+            db.session.commit()
     # Renders Page
     return render_template('incomeEx.html', 
                            title='Income & Expentitures', 
                            inForm=inForm,
                            exForm=exForm,
+                           editIn=editIn,
                            incomes=incomes,
-                           expenditures=expenditures)
+                           expenditures=expenditures,
+                           missing = missing)
