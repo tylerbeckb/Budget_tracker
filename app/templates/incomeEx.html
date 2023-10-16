@@ -31,6 +31,22 @@
       </div>
     </div>
 
+    <div>
+      <form method="POST" name="editIn">
+        {{ inForm.hidden_tag() }}
+        <p>Enter the name of the income to edit</p>
+        {{ editIn.editName }} <br><br>
+        {% if missing == None %}
+          <script>alert("That name does not exist in the database")</script>
+        {% endif %}
+        <p>Enter the new name or confirm original name</p>
+        {{ editIn.newName }} <br><br>
+        <p>Enter the new amount or enter the old amount</p>
+        {{ editIn.newAmount }} <br><br>
+        <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+    </div>
+
     <!--Income Table-->
     <div class="table-responsive">
       <h3>Incomes</h3>
