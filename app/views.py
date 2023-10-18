@@ -56,7 +56,7 @@ def incomeEx():
     if editEx.validate_on_submit():
         editName2 = request.form['editName2']
         # Validates if name exists
-        missingEx = Incomes.query.filter_by(name=editName2).first()
+        missingEx = Expenditures.query.filter_by(name=editName2).first()
         if missingEx != None:
             missingEx.name = request.form['newName2']
             missingEx.amount = request.form['newAmount2']
