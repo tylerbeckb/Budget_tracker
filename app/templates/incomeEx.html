@@ -21,10 +21,8 @@
           <!--Amount-->
           <p>Enter the income amount</p>
           {{ inForm.amount1 }} <br> <br>
-          {% if inForm.amount1.errors %}
-            {% for error in inForm.amount1.errors %}
-            {{ error }}
-            {% endfor %}
+          {% if inForm.name1.errors %}
+            <script>alert("That name already exists in the database")</script>
           {% endif %}
           <input type="submit" value="Submit" class="btn btn-success">
         </form>
@@ -85,10 +83,8 @@
           <!--Amount-->
           <p>Enter the expenditure amount</p>
           {{ exForm.amount2 }} <br> <br>
-          {% if exForm.amount2.errors %}
-            {% for error in exForm.amount2.errors %}
-            {{ error }}
-            {% endfor %}
+          {% if exForm.name2.errors %}
+            <script>alert("That name already exists in the database")</script>
           {% endif %}
           <input type="submit" value="Submit" class="btn btn-success" onclick="reload()">
         </form>
