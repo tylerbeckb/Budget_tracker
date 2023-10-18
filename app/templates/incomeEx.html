@@ -10,7 +10,7 @@
   <!--Left Side-->
   <section class="halfLeft">
     <!--Income Form-->
-    <div class="inForm">
+    <div class="inForm forms">
       <h3>Add Income</h3>
       <div>
         <form method="POST" name="income">
@@ -31,9 +31,11 @@
       </div>
     </div>
 
-    <div>
+    <!--Income Edit Form-->
+    <div class="inEditForm forms">
+      <h3>Edit an Income</h3>
       <form method="POST" name="editIn">
-        {{ inForm.hidden_tag() }}
+        {{ editIn.hidden_tag() }}
         <p>Enter the name of the income to edit</p>
         {{ editIn.editName }} <br><br>
         {% if missing == None %}
@@ -68,7 +70,7 @@
   <!--Right SIde-->
   <section class="halfRight">
     <!--Expenditure Form-->
-    <div class="exForm">
+    <div class="exForm forms">
       <h3>Add Expenditure</h3>
       <div>
         <form method="POST" name="expenditure">
@@ -87,6 +89,24 @@
           <input type="submit" value="Submit" class="btn btn-success" onclick="reload()">
         </form>
       </div>
+    </div>
+
+     <!--Expenditure Edit Form-->
+     <div class="exEditForm forms">
+      <h3>Edit an Income</h3>
+      <form method="POST" name="editIn">
+        {{ editEx.hidden_tag() }}
+        <p>Enter the name of the income to edit</p>
+        {{ editEx.editName2 }} <br><br>
+        {% if missingEx == None %}
+          <script>alert("That name does not exist in the database")</script>
+        {% endif %}
+        <p>Enter the new name or confirm original name</p>
+        {{ editEx.newName2 }} <br><br>
+        <p>Enter the new amount or enter the old amount</p>
+        {{ editEx.newAmount2 }} <br><br>
+        <input type="submit" value="Submit" class="btn btn-success">
+      </form>
     </div>
 
     <!--Expenditure Table-->

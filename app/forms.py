@@ -19,6 +19,12 @@ class EditIn(FlaskForm) :
     newAmount = DecimalField('newAmount', places=2, rounding=None, 
                            validators=[DataRequired(), NumberRange(min=0, max=None, message='Input must be positive')])
 
+class EditEx(FlaskForm) :
+    editName2 = StringField('editName2', validators=[DataRequired()])
+    newName2 = StringField('newName2', validators=[DataRequired()])
+    newAmount2 = DecimalField('newAmount2', places=2, rounding=None, 
+                           validators=[DataRequired(), NumberRange(min=0, max=None, message='Input must be positive')])
+
 
     
  
