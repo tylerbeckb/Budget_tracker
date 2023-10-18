@@ -12,7 +12,7 @@
     <!--Income Form-->
     <div class="inForm forms">
       <h3>Add Income</h3>
-      <div>
+      <div id="inForm">
         <form method="POST" name="income">
           {{ inForm.hidden_tag() }}
           <!--Name-->
@@ -32,7 +32,7 @@
     <!--Income Edit Form-->
     <div class="inEditForm forms">
       <h3>Edit an Income</h3>
-      <form method="POST" name="editIn">
+      <form method="POST" name="editIn" id="inEditForm">
         {{ editIn.hidden_tag() }}
         <p>Enter the name of the income to edit</p>
         {{ editIn.editName }} <br><br>
@@ -74,7 +74,7 @@
     <!--Expenditure Form-->
     <div class="exForm forms">
       <h3>Add Expenditure</h3>
-      <div>
+      <div id="exForm">
         <form method="POST" name="expenditure">
           {{ exForm.hidden_tag() }}
           <!--Name-->
@@ -94,7 +94,7 @@
      <!--Expenditure Edit Form-->
      <div class="exEditForm forms">
       <h3>Edit an Income</h3>
-      <form method="POST" name="editIn">
+      <form method="POST" name="editIn" id="exEditForm">
         {{ editEx.hidden_tag() }}
         <p>Enter the name of the income to edit</p>
         {{ editEx.editName2 }} <br><br>
