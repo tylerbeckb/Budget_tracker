@@ -46,20 +46,24 @@ nav a:hover {
     margin-left: 1.5%;
 }
 
-/* Income form */
+/* Forms */
 
-.inForm {
-    background-color: rgb(60, 45, 225);
+.forms {
     padding: 5%;
     text-align: center;
     margin-bottom: 15%;
 }
 
+.inForm {
+    background-color: rgb(60, 45, 225);
+}
+
 .exForm {
-    padding: 5%;
     background-color: rgb(94, 184, 243);
-    text-align: center;
-    margin-bottom: 15%;
+}
+
+.inEditForm {
+    background-color: aquamarine;
 }
 
 .background {
