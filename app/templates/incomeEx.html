@@ -56,11 +56,15 @@
         <thead class="bg-success">
           <th>Name</th>
           <th>Amount</th>
+          <th></th>
         </thead>
         {% for income in incomes %}
         <tr>
           <td>{{ income.name }}</td>
           <td>{{ income.amount }}</td>
+          <form action="{{ url_for('deleteData', name=income.name, type='in') }}" method="POST">
+            <td><button type="submit" class="btn">Delete</button></td>
+          </form>
         </tr>
         {% endfor %}
       </table>
@@ -116,11 +120,15 @@
         <thead class="bg-danger">
           <th>Name</th>
           <th>Amount</th>
+          <th></th>
         </thead>
         {% for expenditure in expenditures %}
         <tr>
           <td>{{ expenditure.name }}</td>
           <td>{{ expenditure.amount }}</td>
+          <form action="{{ url_for('deleteData', name=expenditure.name, type='ex') }}"  method="POST">
+            <td><button type="submit" class="btn">Delete</button></td>
+          </form>
         </tr>
         {% endfor %}
       </table>

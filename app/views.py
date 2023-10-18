@@ -8,6 +8,15 @@ from .forms import IncomeForm, ExpenditureForm, EditIn, EditEx
 def index():
     return render_template("index.html", title='Home')
 
+@app.route('/deleteData<name>/<type>', methods=["POST"])
+def deleteData(name, type):
+    if type == "ex":
+        Expenditures.query.filter_by(name=name).delete()
+    else:
+        Incomes.query.filter_by(name=name).delete()
+    db.session.commit()
+    return redirect('/incomeExpenditure')
+
 @app.route('/incomeExpenditure', methods=['GET', 'POST'])
 def incomeEx():
     # Forms
