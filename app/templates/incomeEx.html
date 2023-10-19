@@ -8,7 +8,8 @@
   <br>
 
   <!--Left Side-->
-  <section class="halfLeft">
+  <section class="halfCol">
+
     <!--Income Form-->
     <div class="inForm forms">
       <h3>Add Income</h3>
@@ -50,27 +51,35 @@
     <!--Income Table-->
     <div class="table-responsive">
       <h3>Incomes</h3>
-      <table class="table table-striped table-sm">
-        <thead class="bg-success">
-          <th>Name</th>
-          <th>Amount</th>
-          <th></th>
-        </thead>
-        {% for income in incomes %}
-        <tr>
-          <td>{{ income.name }}</td>
-          <td>{{ income.amount }}</td>
-          <form action="{{ url_for('deleteData', name=income.name, type='in') }}" method="POST">
-            <td><button type="submit" class="btn">Delete</button></td>
-          </form>
-        </tr>
-        {% endfor %}
-      </table>
-    </div>
+      {% if inData %} 
+        <table class="table table-striped table-sm">
+          <thead class="bg-success">
+            <th>Name</th>
+            <th>Amount</th>
+            <th></th>
+          </thead>
+          {% for income in incomes %}
+          <tr>
+            <td>{{ income.name }}</td>
+            <td>{{ income.amount }}</td>
+            <form action="{{ url_for('deleteData', name=income.name, type='in') }}" method="POST">
+              <td><button type="submit" class="btn">Delete</button></td>
+            </form>
+          </tr>
+          {% endfor %}
+        </table>
+      {% endif %}
+      {% if not inData %} 
+        <div class="noData">
+          <strong>Data in income database</strong>
+        </div>
+      {% endif %}
+    </div> 
   </section>
 
   <!--Right SIde-->
-  <section class="halfRight">
+  <section class="halfCol">
+
     <!--Expenditure Form-->
     <div class="exForm forms">
       <h3>Add Expenditure</h3>
@@ -93,7 +102,7 @@
 
      <!--Expenditure Edit Form-->
      <div class="exEditForm forms">
-      <h3>Edit an Income</h3>
+      <h3>Edit an Expenditure</h3>
       <form method="POST" name="editIn" id="exEditForm">
         {{ editEx.hidden_tag() }}
         <p>Enter the name of the income to edit</p>
@@ -112,22 +121,29 @@
     <!--Expenditure Table-->
     <div class="table-responsive">
       <h3>Expenditures</h3>
-      <table class="table table-striped table-sm">
-        <thead class="bg-danger">
-          <th>Name</th>
-          <th>Amount</th>
-          <th></th>
-        </thead>
-        {% for expenditure in expenditures %}
-        <tr>
-          <td>{{ expenditure.name }}</td>
-          <td>{{ expenditure.amount }}</td>
-          <form action="{{ url_for('deleteData', name=expenditure.name, type='ex') }}"  method="POST">
-            <td><button type="submit" class="btn">Delete</button></td>
-          </form>
-        </tr>
-        {% endfor %}
-      </table>
+      {% if exData %} 
+        <table class="table table-striped table-sm">
+          <thead class="bg-danger">
+            <th>Name</th>
+            <th>Amount</th>
+            <th></th>
+          </thead>
+          {% for expenditure in expenditures %}
+          <tr>
+            <td>{{ expenditure.name }}</td>
+            <td>{{ expenditure.amount }}</td>
+            <form action="{{ url_for('deleteData', name=expenditure.name, type='ex') }}"  method="POST">
+              <td><button type="submit" class="btn">Delete</button></td>
+            </form>
+          </tr>
+          {% endfor %}
+        </table>
+      {% endif %}
+      {% if not exData %} 
+        <div class="noData">
+          <strong>Data in expenditure database</strong>
+        </div>
+      {% endif %}
     </div>
   </section>
 {% endblock %}
