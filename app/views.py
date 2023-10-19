@@ -1,4 +1,4 @@
-from app.models import Incomes, Expenditures
+from app.models import Incomes, Expenditures, Goals
 from flask import render_template, request, redirect, url_for
 from app import app, db
 from .forms import IncomeForm, ExpenditureForm, EditIn, EditEx
@@ -95,4 +95,5 @@ def incomeEx():
 
 @app.route('/goals')
 def goals():
+    goals = Goals.query.all() 
     return render_template('goals.html', title='Goals')

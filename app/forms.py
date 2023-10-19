@@ -35,7 +35,13 @@ class EditEx(FlaskForm) :
     newName2 = StringField('newName2', validators=[DataRequired()])
     newAmount2 = DecimalField('newAmount2', places=2, rounding=None, 
                            validators=[DataRequired(), NumberRange(min=0, max=None, message='Input must be positive')])
-
-
     
- 
+class addGoal(FlaskForm) :
+    goalName = StringField('goalName')
+    goalAmount = DecimalField('goalAmount', places=2, rounding=None, 
+                              validators=[DataRequired(), NumberRange(min=0, max=None)])
+    
+class editGoal(FlaskForm) :
+    editGoal = StringField('editGoal')
+    editGoalAmount = DecimalField('editGoalAmount', places=2, rounding=None,
+                                  validators=[DataRequired(), NumberRange(min=0, max=None)])
