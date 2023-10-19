@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<br><br>
+<div>
+  <img src="{{ url_for('static',filename='goalsCoral.jpg') }}" alt="Orange Coral" class="goalsBackground">
+</div>
+<br>
 <h1>Goals</h1>
-<section class="halfCol">
-    <button class="goalBtn">Add</button>
-    <button>Edit</button>
-    <button>Delete</button>
+<section class="singleCol">
+  <button class="goalBtn">Add</button>
+  <button class="goalBtn">Edit</button>
+  <button class="goalBtn">Delete</button>
 </section>
 {% endblock %}
