@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block content %}
+  <div>
+    <img src="{{ url_for('static',filename='coral.jpg') }}" alt="Blue Coral" class="background">
+  </div>
+  <br>
+  <h1>Income and Expenditures</h1>
+  <br>
+
+  <!--Left Side-->
+  <section class="halfLeft">
+    <!--Income Form-->
+    <div class="inForm forms">
+      <h3>Add Income</h3>
+      <div id="inForm">
+        <form method="POST" name="income">
+          {{ inForm.hidden_tag() }}
+          <!--Name-->
+          <p>Enter the name of the income</p>
+          {{ inForm.name1 }} <br> <br>
+          <!--Amount-->
+          <p>Enter the income amount</p>
+          {{ inForm.amount1 }} <br> <br>
+          {% if inForm.name1.errors %}
+            <script>alert("That name already exists in the database")</script>
+          {% endif %}
+          <input type="submit" value="Submit" class="btn btn-success">
+        </form>
+      </div>
+    </div>
+
+    <!--Income Edit Form-->
+    <div class="inEditForm forms">
+      <h3>Edit an Income</h3>
+      <form method="POST" name="editIn" id="inEditForm">
+        {{ editIn.hidden_tag() }}
+        <p>Enter the name of the income to edit</p>
+        {{ editIn.editName }} <br><br>
+        {% if missing == None %}
+          <script>alert("That name does not exist in the database")</script>
+        {% endif %}
+        <p>Enter the new name or confirm original name</p>
+        {{ editIn.newName }} <br><br>
+        <p>Enter the new amount or enter the old amount</p>
+        {{ editIn.newAmount }} <br><br>
+        <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+    </div>
+
+    <!--Income Table-->
+    <div class="table-responsive">
+      <h3>Incomes</h3>
+      <table class="table table-striped table-sm">
+        <thead class="bg-success">
+          <th>Name</th>
+          <th>Amount</th>
+          <th></th>
+        </thead>
+        {% for income in incomes %}
+        <tr>
+          <td>{{ income.name }}</td>
+          <td>{{ income.amount }}</td>
+          <form action="{{ url_for('deleteData', name=income.name, type='in') }}" method="POST">
+            <td><button type="submit" class="btn">Delete</button></td>
+          </form>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </section>
+
+  <!--Right SIde-->
+  <section class="halfRight">
+    <!--Expenditure Form-->
+    <div class="exForm forms">
+      <h3>Add Expenditure</h3>
+      <div id="exForm">
+        <form method="POST" name="expenditure">
+          {{ exForm.hidden_tag() }}
+          <!--Name-->
+          <p>Enter the name of the expenditure</p>
+          {{ exForm.name2 }} <br> <br>
+          <!--Amount-->
+          <p>Enter the expenditure amount</p>
+          {{ exForm.amount2 }} <br> <br>
+          {% if exForm.name2.errors %}
+            <script>alert("That name already exists in the database")</script>
+          {% endif %}
+          <input type="submit" value="Submit" class="btn btn-success" onclick="reload()">
+        </form>
+      </div>
+    </div>
+
+     <!--Expenditure Edit Form-->
+     <div class="exEditForm forms">
+      <h3>Edit an Income</h3>
+      <form method="POST" name="editIn" id="exEditForm">
+        {{ editEx.hidden_tag() }}
+        <p>Enter the name of the income to edit</p>
+        {{ editEx.editName2 }} <br><br>
+        {% if missingEx == None %}
+          <script>alert("That name does not exist in the database")</script>
+        {% endif %}
+        <p>Enter the new name or confirm original name</p>
+        {{ editEx.newName2 }} <br><br>
+        <p>Enter the new amount or enter the old amount</p>
+        {{ editEx.newAmount2 }} <br><br>
+        <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+    </div>
+
+    <!--Expenditure Table-->
+    <div class="table-responsive">
+      <h3>Expenditures</h3>
+      <table class="table table-striped table-sm">
+        <thead class="bg-danger">
+          <th>Name</th>
+          <th>Amount</th>
+          <th></th>
+        </thead>
+        {% for expenditure in expenditures %}
+        <tr>
+          <td>{{ expenditure.name }}</td>
+          <td>{{ expenditure.amount }}</td>
+          <form action="{{ url_for('deleteData', name=expenditure.name, type='ex') }}"  method="POST">
+            <td><button type="submit" class="btn">Delete</button></td>
+          </form>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </section>
+{% endblock %}
