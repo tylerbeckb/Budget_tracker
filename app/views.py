@@ -32,6 +32,14 @@ def incomeEx():
     # Databases
     incomes = Incomes.query.all() 
     expenditures = Expenditures.query.all()
+    inData = False
+    exData = False
+
+    if incomes:
+        inData = True
+
+    if expenditures:
+        exData = True
 
     # Writes income data to Incomes db
     if inForm.validate_on_submit():
@@ -81,4 +89,10 @@ def incomeEx():
                            incomes=incomes,
                            expenditures=expenditures,
                            missing = missing,
-                           missingEx = missingEx)
+                           missingEx = missingEx,
+                           inData = inData,
+                           exData = exData)
+
+@app.route('/goals')
+def goals():
+    return render_template('goals.html', title='Goals')
