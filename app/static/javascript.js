@@ -18,3 +18,12 @@ function inExPage() {
         })
     })
 }
+
+function goalPage() {
+    $(document).ready(function() {
+        $("#GoalForm").hide();
+        $("#addBtn").click(function() {
+            $("#GoalForm").slideDown();
+        })
+    })
+}
