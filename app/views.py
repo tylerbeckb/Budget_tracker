@@ -12,8 +12,12 @@ def index():
 def deleteData(name, type):
     if type == "ex":
         Expenditures.query.filter_by(name=name).delete()
-    else:
+    elif type == "in":
         Incomes.query.filter_by(name=name).delete()
+    else:
+        Goals.query.filter_by().delete()
+        db.session.commit()
+        return redirect('/goals')
     db.session.commit()
     return redirect('/incomeExpenditure')
 
