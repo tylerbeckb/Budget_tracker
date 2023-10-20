@@ -8,6 +8,28 @@
 
 <section class="singleCol">
   <!--Goal Add Form-->
+  <div class="editGoalForm forms" id="EditGoalForm">
+    <h3>Edit Goal</h3>
+    <div">
+      <form method="POST" name="goal">
+        {{ editGoalForm.hidden_tag() }}
+        <!--Name-->
+        <p>Enter the new name of the goal</p>
+        {{ editGoalForm.editGoal }} <br> <br>
+        <!--Amount-->
+        <p>Enter the new goal amount</p>
+        {{ editGoalForm.editGoalAmount }} <br> <br>
+        {% if editGoalForm.editGoalAmount.errors %}
+          <script>alert("You can only enter 1 goal!")</script>
+        {% endif %}
+        <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="singleCol">
+  <!--Goal Add Form-->
   <div class="goalForm forms" id="GoalForm">
     <h3>Add Goal</h3>
     <div">
@@ -28,14 +50,13 @@
   </div>
 </section>
 
-
 {% for elem in goals %}
   <p>{{ elem.name }}</p>
 {% endfor %}
 
 <section class="singleCol">
   <button class="goalBtn" id="addBtn">Add</button>
-  <button class="goalBtn">Edit</button>
+  <button class="goalBtn" id="editBtn">Edit</button>
   <button class="goalBtn">Delete</button>
 </section>
 {% endblock %}
