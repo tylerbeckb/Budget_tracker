@@ -20,7 +20,7 @@
         <p>Enter the new goal amount</p>
         {{ editGoalForm.editGoalAmount }} <br> <br>
         {% if editGoalForm.editGoalAmount.errors %}
-          <script>alert("You can only enter 1 goal!")</script>
+          <script>alert("There is no goal to edit")</script>
         {% endif %}
         <input type="submit" value="Submit" class="btn btn-success">
       </form>
