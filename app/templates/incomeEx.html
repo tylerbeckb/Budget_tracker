@@ -71,7 +71,7 @@
       {% endif %}
       {% if not inData %} 
         <div class="noData">
-          <strong>Data in income database</strong>
+          <strong>No data in income database</strong>
         </div>
       {% endif %}
     </div> 
@@ -95,7 +95,7 @@
           {% if exForm.name2.errors %}
             <script>alert("That name already exists in the database")</script>
           {% endif %}
-          <input type="submit" value="Submit" class="btn btn-success" onclick="reload()">
+          <input type="submit" value="Submit" class="btn btn-success">
         </form>
       </div>
     </div>
@@ -141,7 +141,7 @@
       {% endif %}
       {% if not exData %} 
         <div class="noData">
-          <strong>Data in expenditure database</strong>
+          <strong>No Data in expenditure database</strong>
         </div>
       {% endif %}
     </div>
