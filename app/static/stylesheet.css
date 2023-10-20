@@ -69,6 +69,10 @@ nav a:hover {
     background-color: orange;
 }
 
+.editGoalForm {
+    background-color: chocolate;
+}
+
 .background {
     width: 100%;
     max-width: 100%;
