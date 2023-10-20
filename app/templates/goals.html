@@ -57,7 +57,7 @@
 <section class="singleCol">
   <button class="goalBtn" id="addBtn">Add</button>
   <button class="goalBtn" id="editBtn">Edit</button>
-  <form action="{{ url_for('deleteData', name=expenditure.name, type='goal') }}"  method="POST">
+  <form action="{{ url_for('deleteData', name='goal', type='goal') }}"  method="POST">
     <button class="goalBtn">Delete</button>
   </form>
 </section>
