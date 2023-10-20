@@ -5,8 +5,36 @@
 </div>
 <br>
 <h1>Goals</h1>
+
 <section class="singleCol">
-  <button class="goalBtn">Add</button>
+  <!--Goal Add Form-->
+  <div class="goalForm forms" id="GoalForm">
+    <h3>Add Goal</h3>
+    <div">
+      <form method="POST" name="goal">
+        {{ goalForm.hidden_tag() }}
+        <!--Name-->
+        <p>Enter the name of the goal</p>
+        {{ goalForm.goalName }} <br> <br>
+        <!--Amount-->
+        <p>Enter the goal amount</p>
+        {{ goalForm.goalAmount }} <br> <br>
+        {% if goalForm.goalAmount.errors %}
+          <script>alert("You can only enter 1 goal!")</script>
+        {% endif %}
+        <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+</section>
+
+
+{% for elem in goals %}
+  <p>{{ elem.name }}</p>
+{% endfor %}
+
+<section class="singleCol">
+  <button class="goalBtn" id="addBtn">Add</button>
   <button class="goalBtn">Edit</button>
   <button class="goalBtn">Delete</button>
 </section>

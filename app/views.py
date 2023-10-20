@@ -1,7 +1,7 @@
 from app.models import Incomes, Expenditures, Goals
 from flask import render_template, request, redirect, url_for
 from app import app, db
-from .forms import IncomeForm, ExpenditureForm, EditIn, EditEx
+from .forms import IncomeForm, ExpenditureForm, EditIn, EditEx, addGoal
 
 
 @app.route('/')
@@ -93,7 +93,18 @@ def incomeEx():
                            inData = inData,
                            exData = exData)
 
-@app.route('/goals')
+@app.route('/goals', methods=['GET', 'POST'])
 def goals():
+    goalForm = addGoal()
     goals = Goals.query.all() 
-    return render_template('goals.html', title='Goals')
+    if goalForm.validate_on_submit():
+        goalName = request.form['goalName']
+        goalAmount = request.form['goalAmount']
+        record = Goals(name=goalName, amount=goalAmount)
+        db.session.add(record)
+        db.session.commit()
+        return redirect(url_for('goals'))
+    return render_template('goals.html', 
+                           title='Goals',
+                           goalForm=goalForm,
+                           goals=goals)

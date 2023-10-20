@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import DecimalField, StringField, ValidationError
 from wtforms.validators import DataRequired, NumberRange
-from app.models import Incomes, Expenditures
+from app.models import Incomes, Expenditures, Goals
 
 
 class IncomeForm(FlaskForm):
@@ -41,7 +41,14 @@ class addGoal(FlaskForm) :
     goalAmount = DecimalField('goalAmount', places=2, rounding=None, 
                               validators=[DataRequired(), NumberRange(min=0, max=None)])
     
+    def validate_goalAmount(form, field):
+        exists = Goals.query.all() 
+        if exists != None:
+            raise ValidationError()
+    
 class editGoal(FlaskForm) :
     editGoal = StringField('editGoal')
     editGoalAmount = DecimalField('editGoalAmount', places=2, rounding=None,
                                   validators=[DataRequired(), NumberRange(min=0, max=None)])
+
+        
