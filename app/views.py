@@ -105,6 +105,13 @@ def goals():
         db.session.add(record)
         db.session.commit()
         return redirect(url_for('goals'))
+    
+    if editGoalForm.validate_on_submit():
+        goalRecord = Goals.query.filter_by().first()
+        goalRecord.name = request.form['editGoal']
+        goalRecord.amount = request.form['editGoalAmount']
+        db.session.commit()
+        return redirect(url_for('goals'))
     return render_template('goals.html', 
                            title='Goals',
                            goalForm=goalForm,
