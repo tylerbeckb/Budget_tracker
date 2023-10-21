@@ -6,7 +6,43 @@ from .forms import IncomeForm, ExpenditureForm, EditIn, EditEx, addGoal, editGoa
 
 @app.route('/')
 def index():
-    return render_template("index.html", title='Home')
+    #Databases and variables
+    incomes = Incomes.query.all() 
+    expenditures = Expenditures.query.all()
+    inTotal = 0
+    exTotal = 0
+    total = 0
+    needZero = False
+    needZeroEx = False
+
+    # Adds both the totals
+    for income in incomes:
+        inTotal += income.amount
+    for expenditure in expenditures:
+        exTotal += expenditure.amount
+
+    # Calculates overall total
+    total = round(inTotal - exTotal,2)
+
+    # Checks if the total needs an extra 0
+    strinTotal = str(inTotal)
+    if strinTotal.find('.') != len(strinTotal) - 2:
+        needZero = False
+    else:
+        needZero = True
+
+    strexTotal = str(exTotal)
+    if strexTotal.find('.') != len(strexTotal) - 2:
+        needZeroEx = False
+    else:
+        needZeroEx = True
+
+    return render_template("index.html", title='Home',
+                           inTotal=inTotal,
+                           exTotal=exTotal,
+                           needZero=needZero,
+                           needZeroEx=needZeroEx,
+                           total=total)
 
 @app.route('/deleteData<name>/<type>', methods=["POST"])
 def deleteData(name, type):
@@ -145,9 +181,9 @@ def goals():
         editError = False
         strGoalAmount = str(goalRecord.amount)
         if strGoalAmount.find('.') != len(strGoalAmount) - 2:
-            needZero = True
-        else:
             needZero = False
+        else:
+            needZero = True
     else:
         editError = True
         addError = False

@@ -1,5 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 <br><br>
-  <h1>Home</h1>
+
+<!--Progress bar-->
+  <section class="singleCol">
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated"></div>
+    </div>
+    <h2>Total</h2>
+    {{ total }}
+  </section>
+
+  <!--Total incomes-->
+  <section class="halfCol centre">
+    <h2>Total Incomes</h2>
+    <!--Checks if an extra zero on the end if needed-->
+    {% if needZero %}
+      <p>£{{ inTotal }}0</p>
+    {% else %}
+      <p>£{{ inTotal }}</p>
+    {% endif %}
+  </section>
+
+  <!--Total expenditures-->
+  <section class="halfCol centre">
+    <h2>Total Expenditures</h2>
+    <!--Checks if an extra zero on the end if needed-->
+    {% if needZeroEx %}
+      <p>£{{ exTotal }}0</p>
+    {% else %}
+      <p>£{{ exTotal }}</p>
+    {% endif %}
+  </section>
 {% endblock %}
