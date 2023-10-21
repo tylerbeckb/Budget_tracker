@@ -18,3 +18,18 @@ function inExPage() {
         })
     })
 }
+
+function goalPage() {
+    $(document).ready(function() {
+        $("#GoalForm").hide();
+        $("#EditGoalForm").hide();
+        $("#addBtn").click(function() {
+            $("#GoalForm").slideDown();
+            $("#EditGoalForm").hide();
+        })
+        $("#editBtn").click(function() {
+            $("#EditGoalForm").slideDown();
+            $("#GoalForm").hide();
+        })
+    })
+}

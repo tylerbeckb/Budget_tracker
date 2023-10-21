@@ -1,10 +1,73 @@
 {% extends "base.html" %}
 {% block content %}
-<br><br>
+<div>
+  <img src="{{ url_for('static',filename='goalsCoral.jpg') }}" alt="Orange Coral" class="goalsBackground">
+</div>
+<br>
 <h1>Goals</h1>
-<section class="halfCol">
-    <button class="goalBtn">Add</button>
-    <button>Edit</button>
-    <button>Delete</button>
+
+<section class="singleCol">
+  <!--Goal Add Form-->
+  <div class="editGoalForm forms" id="EditGoalForm">
+    <h3>Edit Goal</h3>
+    <div">
+      <form method="POST" name="editGoal">
+        {{ editGoalForm.hidden_tag() }}
+        <!--Name-->
+        <p>Enter the new name of the goal</p>
+        {{ editGoalForm.editGoal }} <br> <br>
+        <!--Amount-->
+        <p>Enter the new goal amount</p>
+        {{ editGoalForm.editGoalAmount }} <br> <br>
+        {% if editGoalForm.editGoalAmount.errors and editError %}
+          <script>alert("There is no goal to edit")</script>
+        {% endif %}
+        <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="singleCol">
+  <!--Goal Add Form-->
+  <div class="goalForm forms" id="GoalForm">
+    <h3>Add Goal</h3>
+    <div">
+      <form method="POST" name="goal">
+        {{ goalForm.hidden_tag() }}
+        <!--Name-->
+        <p>Enter the name of the goal</p>
+        {{ goalForm.goalName }} <br> <br>
+        <!--Amount-->
+        <p>Enter the goal amount</p>
+        {{ goalForm.goalAmount }} <br> <br>
+        {% if goalForm.goalAmount.errors and addError %}
+          <script>alert("You can only enter 1 goal!")</script>
+        {% endif %}
+        <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+</section>
+
+<!--Displays Goal-->
+<section class="singleCol">
+  <br>
+  {% for goal in goals %}
+  {% if not needZero %} 
+    <h5>{{ goal.name }} = £{{ goal.amount }}0</h5>
+  {% endif %}
+  {% if needZero %}
+    <h5>{{ goal.name }} = £{{ goal.amount }}</h5>
+  {% endif %}
+{% endfor %}
+</section>
+
+<section class="singleCol">
+  <button class="goalBtn" id="addBtn">Add</button>
+  <button class="goalBtn" id="editBtn">Edit</button>
+  <form action="{{ url_for('deleteData', name='goal', type='goal') }}"  method="POST">
+    <button class="goalBtn">Delete</button>
+  </form>
 </section>
 {% endblock %}
