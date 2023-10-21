@@ -11,7 +11,7 @@
   <div class="editGoalForm forms" id="EditGoalForm">
     <h3>Edit Goal</h3>
     <div">
-      <form method="POST" name="goal">
+      <form method="POST" name="editGoal">
         {{ editGoalForm.hidden_tag() }}
         <!--Name-->
         <p>Enter the new name of the goal</p>
@@ -19,7 +19,7 @@
         <!--Amount-->
         <p>Enter the new goal amount</p>
         {{ editGoalForm.editGoalAmount }} <br> <br>
-        {% if editGoalForm.editGoalAmount.errors %}
+        {% if editGoalForm.editGoalAmount.errors and editError %}
           <script>alert("There is no goal to edit")</script>
         {% endif %}
         <input type="submit" value="Submit" class="btn btn-success">
@@ -41,7 +41,7 @@
         <!--Amount-->
         <p>Enter the goal amount</p>
         {{ goalForm.goalAmount }} <br> <br>
-        {% if goalForm.goalAmount.errors %}
+        {% if goalForm.goalAmount.errors and addError %}
           <script>alert("You can only enter 1 goal!")</script>
         {% endif %}
         <input type="submit" value="Submit" class="btn btn-success">
@@ -50,9 +50,18 @@
   </div>
 </section>
 
-{% for elem in goals %}
-  <p>{{ elem.name }}</p>
+<!--Displays Goal-->
+<section class="singleCol">
+  <br>
+  {% for goal in goals %}
+  {% if not needZero %} 
+    <h5>{{ goal.name }} = £{{ goal.amount }}0</h5>
+  {% endif %}
+  {% if needZero %}
+    <h5>{{ goal.name }} = £{{ goal.amount }}</h5>
+  {% endif %}
 {% endfor %}
+</section>
 
 <section class="singleCol">
   <button class="goalBtn" id="addBtn">Add</button>
