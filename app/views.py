@@ -39,6 +39,9 @@ def incomeEx():
     inData = False
     exData = False
 
+    existInFormError = True
+    existExFormError = True
+
     if incomes:
         inData = True
 
@@ -46,43 +49,54 @@ def incomeEx():
         exData = True
 
     # Writes income data to Incomes db
-    if inForm.validate_on_submit():
+    if inForm.validate_on_submit() and inForm.submit.data:
+        existExFormError = False
         name1 = request.form['name1']
         amount1 = request.form['amount1']
+        amount1 = round(float(amount1), 2)
         record = Incomes(name=name1, amount=amount1)
         db.session.add(record)
         db.session.commit()
         return redirect(url_for('incomeEx'))
-    
+
     # Writes expenditure data to Expenditures db
-    if exForm.validate_on_submit():
+    if exForm.validate_on_submit() and exForm.submit3.data:
+        existInFormError = False
         name2 = request.form['name2']
         amount2 = request.form['amount2']
+        amount2 = round(float(amount2), 2)
         record = Expenditures(name=name2, amount=amount2)
         db.session.add(record)
         db.session.commit()
         return redirect(url_for('incomeEx'))
     
     # Edits income db
-    if editIn.validate_on_submit():
+    if editIn.validate_on_submit() and editIn.submit2.data:
+        existInFormError = False
+        existExFormError = False
         editName = request.form['editName']
         # Validates if name exists
         missing = Incomes.query.filter_by(name=editName).first()
         if missing != None:
             missing.name = request.form['newName']
-            missing.amount = request.form['newAmount']
+            newAmount = request.form['newAmount']
+            newAmount = round(float(newAmount), 2)
+            missing.amount = newAmount
             db.session.commit()
 
     # Edits expenditure db
-    if editEx.validate_on_submit():
+    if editEx.validate_on_submit() and editEx.submit4.data:
+        existExFormError = False
+        existInFormError = False
         editName2 = request.form['editName2']
         # Validates if name exists
         missingEx = Expenditures.query.filter_by(name=editName2).first()
         if missingEx != None:
             missingEx.name = request.form['newName2']
-            missingEx.amount = request.form['newAmount2']
+            newAmount2 = request.form['newAmount2']
+            newAmount2 = round(float(newAmount2), 2)
+            missingEx.amount = newAmount2
             db.session.commit()
-
     # Renders Page
     return render_template('incomeEx.html', 
                            title='Income & Expentitures', 
@@ -95,16 +109,23 @@ def incomeEx():
                            missing = missing,
                            missingEx = missingEx,
                            inData = inData,
-                           exData = exData)
+                           exData = exData,
+                           existInFormError=existInFormError,
+                           existExFormError=existExFormError)
 
 @app.route('/goals', methods=['GET', 'POST'])
 def goals():
+
+    needZero = False
+
     goalForm = addGoal()
     editGoalForm = editGoal()
-    goals = Goals.query.all() 
+    goals = Goals.query.all()
+    goalRecord = Goals.query.filter_by().first()
     if goalForm.validate_on_submit():
         goalName = request.form['goalName']
         goalAmount = request.form['goalAmount']
+        goalAmount = round(float(goalAmount),2)
         record = Goals(name=goalName, amount=goalAmount)
         db.session.add(record)
         db.session.commit()
@@ -114,10 +135,28 @@ def goals():
         goalRecord = Goals.query.filter_by().first()
         goalRecord.name = request.form['editGoal']
         goalRecord.amount = request.form['editGoalAmount']
+        goalRecord.amount = round(float(goalRecord.amount),2)
         db.session.commit()
         return redirect(url_for('goals'))
+    
+    # Checks if the display needs to add a zero on the end
+    if goalRecord != None:
+        addError = True
+        editError = False
+        strGoalAmount = str(goalRecord.amount)
+        if strGoalAmount.find('.') != len(strGoalAmount) - 2:
+            needZero = True
+        else:
+            needZero = False
+    else:
+        editError = True
+        addError = False
+
     return render_template('goals.html', 
                            title='Goals',
                            goalForm=goalForm,
                            goals=goals,
-                           editGoalForm=editGoalForm)
+                           editGoalForm=editGoalForm,
+                           needZero = needZero,
+                           editError=editError,
+                           addError=addError)

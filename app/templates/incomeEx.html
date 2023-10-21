@@ -22,10 +22,10 @@
           <!--Amount-->
           <p>Enter the income amount</p>
           {{ inForm.amount1 }} <br> <br>
-          {% if inForm.name1.errors %}
-            <script>alert("That name already exists in the database")</script>
+          {% if existInFormError and inForm.name1.errors %}
+            <script>alert("That name already exists in the database in")</script>
           {% endif %}
-          <input type="submit" value="Submit" class="btn btn-success">
+          {{ inForm.submit(class="btn btn-success") }}
         </form>
       </div>
     </div>
@@ -44,7 +44,7 @@
         {{ editIn.newName }} <br><br>
         <p>Enter the new amount or enter the old amount</p>
         {{ editIn.newAmount }} <br><br>
-        <input type="submit" value="Submit" class="btn btn-success">
+        {{ editIn.submit2(class="btn btn-success") }}
       </form>
     </div>
 
@@ -77,7 +77,7 @@
     </div> 
   </section>
 
-  <!--Right SIde-->
+  <!--Right Side-->
   <section class="halfCol">
 
     <!--Expenditure Form-->
@@ -92,10 +92,10 @@
           <!--Amount-->
           <p>Enter the expenditure amount</p>
           {{ exForm.amount2 }} <br> <br>
-          {% if exForm.name2.errors %}
-            <script>alert("That name already exists in the database")</script>
+          {% if existExFormError and exForm.name2.errors %}
+            <script>alert("That name already exists in the database ex")</script>
           {% endif %}
-          <input type="submit" value="Submit" class="btn btn-success">
+          {{ exForm.submit3(class="btn btn-success") }}
         </form>
       </div>
     </div>
@@ -103,7 +103,7 @@
      <!--Expenditure Edit Form-->
      <div class="exEditForm forms">
       <h3>Edit an Expenditure</h3>
-      <form method="POST" name="editIn" id="exEditForm">
+      <form method="POST" name="exEditForm" id="exEditForm">
         {{ editEx.hidden_tag() }}
         <p>Enter the name of the income to edit</p>
         {{ editEx.editName2 }} <br><br>
@@ -114,7 +114,7 @@
         {{ editEx.newName2 }} <br><br>
         <p>Enter the new amount or enter the old amount</p>
         {{ editEx.newAmount2 }} <br><br>
-        <input type="submit" value="Submit" class="btn btn-success">
+        {{ editEx.submit4(class="btn btn-success") }}
       </form>
     </div>
 
