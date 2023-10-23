@@ -18,7 +18,8 @@ nav a {
 }
 
 nav a:hover {
-    opacity: 0.5;
+    opacity: 0.8;
+    color: rgb(134, 134, 134);
 }
 
 * {
@@ -115,4 +116,14 @@ h1 {
     border-style: solid;
     border-radius: 20px;
     margin: 4%;
+}
+
+.goalBtn:hover {
+    transition: ease-in 0.1s;
+    transform: scale(1.1);
+    background-color: rgb(244, 107, 57);
+}
+
+.centre {
+    text-align: center;
 }
