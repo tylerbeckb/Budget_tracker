@@ -9,11 +9,13 @@ def index():
     #Databases and variables
     incomes = Incomes.query.all() 
     expenditures = Expenditures.query.all()
+    goal = Goals.query.first()
     inTotal = 0
     exTotal = 0
     total = 0
     needZero = False
     needZeroEx = False
+    needZeroTot = False
 
     # Adds both the totals
     for income in incomes:
@@ -36,13 +38,28 @@ def index():
         needZeroEx = False
     else:
         needZeroEx = True
+    
+    strTotal = str(total)
+    if strTotal.find('.') != len(strTotal) - 2:
+        needZeroTot = False
+    else:
+        needZeroTot = True
+
+
+    if total < 0:
+        barWidth = 0
+    else:
+        barWidth = round((total / goal.amount) * 100, 2)
+
 
     return render_template("index.html", title='Home',
                            inTotal=inTotal,
                            exTotal=exTotal,
                            needZero=needZero,
                            needZeroEx=needZeroEx,
-                           total=total)
+                           total=total,
+                           needZeroTot=needZeroTot,
+                           barWidth=barWidth)
 
 @app.route('/deleteData<name>/<type>', methods=["POST"])
 def deleteData(name, type):

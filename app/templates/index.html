@@ -2,13 +2,13 @@
 {% block content %}
 <br><br>
 
-<!--Progress bar-->
   <section class="singleCol">
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped progress-bar-animated"></div>
-    </div>
     <h2>Total</h2>
-    {{ total }}
+    {% if needZeroTot %}
+      <p>£{{ total }}0</p>
+    {% else %}
+      <p>£{{ total }}</p>
+    {% endif %}
   </section>
 
   <!--Total incomes-->
@@ -31,5 +31,17 @@
     {% else %}
       <p>£{{ exTotal }}</p>
     {% endif %}
+  </section>
+
+  <!--Progress bar-->
+  <section class="singleCol centre">
+    <h2>Progress Towards Goal</h2>
+    {% if barWidth == 100 %}
+      <p>Congrats!! You have completed your goal!</p>
+    {% endif %}
+    <br>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated progressWidth" style="width: {{barWidth}}%;">{{ barWidth }}%</div>
+    </div>
   </section>
 {% endblock %}
