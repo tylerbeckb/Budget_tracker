@@ -33,12 +33,22 @@ class EditIn(FlaskForm) :
                            validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     submit2 = SubmitField('Submit') 
 
+    def validate_newName(form, field):
+        exists = Incomes.query.filter_by(name=field.data).first()
+        if exists != None:
+            raise ValidationError()
+
 class EditEx(FlaskForm) :
     editName2 = StringField('editName2', validators=[DataRequired(), Length(min=0, max=20)])
     newName2 = StringField('newName2', validators=[DataRequired()])
     newAmount2 = DecimalField('newAmount2', places=2, rounding=None, 
                            validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     submit4 = SubmitField('Submit')
+
+    def validate_newName2(form, field):
+        exists = Expenditures.query.filter_by(name=field.data).first()
+        if exists != None:
+            raise ValidationError()
     
 class addGoal(FlaskForm) :
     goalName = StringField('goalName')
