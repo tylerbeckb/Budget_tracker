@@ -51,6 +51,9 @@ def index():
     else:
         barWidth = round((total / goal.amount) * 100, 2)
 
+    if barWidth > 100:
+        barWidth = 100
+
 
     return render_template("index.html", title='Home',
                            inTotal=inTotal,
