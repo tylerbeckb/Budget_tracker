@@ -51,7 +51,7 @@ nav a:hover {
 }
 
 .inForm {
-    background-color: rgb(60, 45, 225);
+    background-color: rgb(75, 120, 255);
 }
 
 .exForm {
@@ -126,4 +126,30 @@ h1 {
 
 .centre {
     text-align: center;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 900px) {
+    * {
+        font-size: 15px;
+    }
+
+    nav a {
+        font-size: 20px;
+        padding: 10px;
+        padding-left: 6%;
+    }
+
+    .singleCol {
+        margin-top: 7%;
+    }
+
+    .halfCol {
+        margin-top: 7%;
+        margin-bottom: 5%;
+    }
+
+    .goalBtn {
+        width: 90px;
+    }
 }
