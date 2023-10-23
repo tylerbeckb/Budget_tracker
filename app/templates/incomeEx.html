@@ -17,7 +17,7 @@
         <form method="POST" name="income">
           {{ inForm.hidden_tag() }}
           <!--Name-->
-          <p>Enter the name of the income</p>
+          <p>Enter the name of the income <br> (Max Characters 20)</p>
           {{ inForm.name1 }} <br> <br>
           <!--Amount-->
           <p>Enter the income amount</p>
@@ -35,7 +35,7 @@
       <h3>Edit an Income</h3>
       <form method="POST" name="editIn" id="inEditForm">
         {{ editIn.hidden_tag() }}
-        <p>Enter the name of the income to edit</p>
+        <p>Enter the name of the income to edit <br> (Max Characters 20)</p>
         {{ editIn.editName }} <br><br>
         {% if missing == None %}
           <script>alert("That name does not exist in the database")</script>
@@ -63,7 +63,7 @@
             <td>{{ income.name }}</td>
             <td>{{ income.amount }}</td>
             <form action="{{ url_for('deleteData', name=income.name, type='in') }}" method="POST">
-              <td><button type="submit" class="btn">Delete</button></td>
+              <td><button type="submit" class="btn" id="deleteBtn">Delete</button></td>
             </form>
           </tr>
           {% endfor %}
@@ -87,7 +87,7 @@
         <form method="POST" name="expenditure">
           {{ exForm.hidden_tag() }}
           <!--Name-->
-          <p>Enter the name of the expenditure</p>
+          <p>Enter the name of the expenditure <br> (Max Characters 20)</p>
           {{ exForm.name2 }} <br> <br>
           <!--Amount-->
           <p>Enter the expenditure amount</p>
@@ -105,7 +105,7 @@
       <h3>Edit an Expenditure</h3>
       <form method="POST" name="exEditForm" id="exEditForm">
         {{ editEx.hidden_tag() }}
-        <p>Enter the name of the income to edit</p>
+        <p>Enter the name of the income to edit <br> (Max Characters 20)</p>
         {{ editEx.editName2 }} <br><br>
         {% if missingEx == None %}
           <script>alert("That name does not exist in the database")</script>
