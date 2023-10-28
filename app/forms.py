@@ -33,10 +33,11 @@ class EditIn(FlaskForm) :
                            validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     submit2 = SubmitField('Submit') 
 
-    def validate_newName(form, field):
+    def validate_newName(self, field):
         exists = Incomes.query.filter_by(name=field.data).first()
-        if exists != None:
-            raise ValidationError()
+        if field.data != self.editName.data:
+            if exists != None:
+                raise ValidationError()
 
 class EditEx(FlaskForm) :
     editName2 = StringField('editName2', validators=[DataRequired(), Length(min=0, max=20)])
@@ -45,10 +46,11 @@ class EditEx(FlaskForm) :
                            validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     submit4 = SubmitField('Submit')
 
-    def validate_newName2(form, field):
+    def validate_newName2(self, field):
         exists = Expenditures.query.filter_by(name=field.data).first()
-        if exists != None:
-            raise ValidationError()
+        if field.data != self.editName2.data:
+            if exists != None:
+                raise ValidationError()
     
 class addGoal(FlaskForm) :
     goalName = StringField('goalName')
