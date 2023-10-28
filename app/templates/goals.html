@@ -8,7 +8,7 @@
 
 <section class="singleCol">
   <!--Goal Add Form-->
-  <div class="editGoalForm forms" id="EditGoalForm">
+  <div class="editGoalForm forms" id="EditGoalForm" tabindex="1">
     <h3>Edit Goal</h3>
     <div">
       <form method="POST" name="editGoal">
@@ -30,7 +30,7 @@
 
 <section class="singleCol">
   <!--Goal Add Form-->
-  <div class="goalForm forms" id="GoalForm">
+  <div class="goalForm forms" id="GoalForm" tabindex="1">
     <h3>Add Goal</h3>
     <div">
       <form method="POST" name="goal">
@@ -54,10 +54,9 @@
 <section class="singleCol">
   <br>
   {% for goal in goals %}
-  {% if not needZero %} 
+  {% if needZero %} 
     <h5>{{ goal.name }} = £{{ goal.amount }}0</h5>
-  {% endif %}
-  {% if needZero %}
+  {% else %}
     <h5>{{ goal.name }} = £{{ goal.amount }}</h5>
   {% endif %}
 {% endfor %}

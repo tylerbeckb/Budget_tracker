@@ -2,7 +2,7 @@
 {% block content %}
 <br><br>
 
-  <section class="singleCol">
+  <section class="singleCol" tabindex="1">
     <h2>Total</h2>
     {% if needZeroTot %}
       <p>£{{ total }}0</p>
@@ -12,7 +12,7 @@
   </section>
 
   <!--Total incomes-->
-  <section class="halfCol centre">
+  <section class="halfCol centre" tabindex="2">
     <h2>Total Incomes</h2>
     <!--Checks if an extra zero on the end if needed-->
     {% if needZero %}
@@ -23,7 +23,7 @@
   </section>
 
   <!--Total expenditures-->
-  <section class="halfCol centre">
+  <section class="halfCol centre" tabindex="2">
     <h2>Total Expenditures</h2>
     <!--Checks if an extra zero on the end if needed-->
     {% if needZeroEx %}
@@ -34,14 +34,16 @@
   </section>
 
   <!--Progress bar-->
-  <section class="singleCol centre">
+  <section class="singleCol centre" tabindex="3">
     <h2>Progress Towards Goal</h2>
     {% if barWidth == 100 %}
       <p>Congrats!! You have completed your goal!</p>
     {% endif %}
     <br>
     <div class="progress">
-      <div class="progress-bar progress-bar-striped progress-bar-animated progressWidth" style="width: {{barWidth}}%;">{{ barWidth }}%</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated progressWidth" style="width: {{barWidth}}%;">
+        {{ barWidth }}%
+      </div>
     </div>
   </section>
 {% endblock %}

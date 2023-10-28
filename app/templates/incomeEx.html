@@ -11,7 +11,7 @@
   <section class="halfCol">
 
     <!--Income Form-->
-    <div class="inForm forms">
+    <div class="inForm forms" tabindex="1">
       <h3>Add Income</h3>
       <div id="inForm">
         <form method="POST" name="income">
@@ -31,7 +31,7 @@
     </div>
 
     <!--Income Edit Form-->
-    <div class="inEditForm forms">
+    <div class="inEditForm forms" tabindex="3">
       <h3>Edit an Income</h3>
       <form method="POST" name="editIn" id="inEditForm">
         {{ editIn.hidden_tag() }}
@@ -49,7 +49,7 @@
     </div>
 
     <!--Income Table-->
-    <div class="table-responsive">
+    <div class="table-responsive" tabindex="5">
       <h3>Incomes</h3>
       {% if inData %} 
         <table class="table table-striped table-sm">
@@ -81,7 +81,7 @@
   <section class="halfCol">
 
     <!--Expenditure Form-->
-    <div class="exForm forms">
+    <div class="exForm forms" tabindex="2">
       <h3>Add Expenditure</h3>
       <div id="exForm">
         <form method="POST" name="expenditure">
@@ -101,7 +101,7 @@
     </div>
 
      <!--Expenditure Edit Form-->
-     <div class="exEditForm forms">
+     <div class="exEditForm forms" tabindex="4">
       <h3>Edit an Expenditure</h3>
       <form method="POST" name="exEditForm" id="exEditForm">
         {{ editEx.hidden_tag() }}
@@ -119,7 +119,7 @@
     </div>
 
     <!--Expenditure Table-->
-    <div class="table-responsive">
+    <div class="table-responsive" tabindex="5">
       <h3>Expenditures</h3>
       {% if exData %} 
         <table class="table table-striped table-sm">
