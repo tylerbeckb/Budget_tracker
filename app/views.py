@@ -46,10 +46,14 @@ def index():
         needZeroTot = True
 
 
+    # Calculates progress bar width
     if total < 0:
         barWidth = 0
     else:
-        barWidth = round((total / goal.amount) * 100, 2)
+        if goal == None:
+            barWidth = 0
+        else:
+            barWidth = round((total / goal.amount) * 100, 2)
 
     if barWidth > 100:
         barWidth = 100
@@ -64,6 +68,7 @@ def index():
                            needZeroTot=needZeroTot,
                            barWidth=barWidth)
 
+# Deletes data for all models
 @app.route('/deleteData<name>/<type>', methods=["POST"])
 def deleteData(name, type):
     if type == "ex":
@@ -77,6 +82,7 @@ def deleteData(name, type):
     db.session.commit()
     return redirect('/incomeExpenditure')
 
+# Income and expenditure page
 @app.route('/incomeExpenditure', methods=['GET', 'POST'])
 def incomeEx():
     # Forms
@@ -98,6 +104,7 @@ def incomeEx():
     existInFormError = True
     existExFormError = True
 
+    # Checks if there is data in the idels
     if incomes:
         inData = True
 
@@ -153,6 +160,7 @@ def incomeEx():
             newAmount2 = round(float(newAmount2), 2)
             missingEx.amount = newAmount2
             db.session.commit()
+
     # Renders Page
     return render_template('incomeEx.html', 
                            title='Income & Expentitures', 
@@ -169,15 +177,19 @@ def incomeEx():
                            existInFormError=existInFormError,
                            existExFormError=existExFormError)
 
+# Goal page
 @app.route('/goals', methods=['GET', 'POST'])
 def goals():
 
+    # Variables and models
     needZero = False
 
     goalForm = addGoal()
     editGoalForm = editGoal()
     goals = Goals.query.all()
     goalRecord = Goals.query.filter_by().first()
+
+    # Adds goal to db
     if goalForm.validate_on_submit():
         goalName = request.form['goalName']
         goalAmount = request.form['goalAmount']
@@ -187,6 +199,7 @@ def goals():
         db.session.commit()
         return redirect(url_for('goals'))
     
+    # Edits goal
     if editGoalForm.validate_on_submit():
         goalRecord = Goals.query.filter_by().first()
         goalRecord.name = request.form['editGoal']

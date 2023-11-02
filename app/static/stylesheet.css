@@ -40,7 +40,16 @@ nav a:hover {
     margin-right: 1.5%;
 }
 
+.singleCol {
+    width: 70%;
+    margin: auto;
+    align-items: center;
+    text-align: center;
+}
 
+.centre {
+    text-align: center;
+}
 
 /* Forms */
 
@@ -97,14 +106,6 @@ h1 {
     text-align: center;
 }
 
-.singleCol {
-    width: 70%;
-    margin: auto;
-    align-items: center;
-    text-align: center;
-
-}
-
 .goalBtn {
     width: 150px;
     border-color: coral;
@@ -122,10 +123,6 @@ h1 {
     transition: ease-in 0.1s;
     transform: scale(1.1);
     background-color: rgb(244, 107, 57);
-}
-
-.centre {
-    text-align: center;
 }
 
 /* Responsiveness */

@@ -3,29 +3,33 @@ from wtforms import DecimalField, StringField, ValidationError, SubmitField
 from wtforms.validators import DataRequired, NumberRange, Length
 from app.models import Incomes, Expenditures, Goals
 
-
+# Add Income Form
 class IncomeForm(FlaskForm):
     name1 = StringField('Name1', validators=[DataRequired(), Length(min=0, max=20)])
     amount1 = DecimalField('Amount1', places=2, rounding=None, 
                            validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     submit = SubmitField('Submit')    
 
+    # Validates if name does not exist
     def validate_name1(form, field):
         exists = Incomes.query.filter_by(name=field.data).first()
         if exists != None:
             raise ValidationError()
 
+# Add Expenditure form
 class ExpenditureForm(FlaskForm):
     name2 = StringField('Name2', validators=[DataRequired(), Length(min=0, max=20)])
     amount2 = DecimalField('Amount2', places=2, rounding=None, 
                            validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     submit3 = SubmitField('Submit')
     
+    # Validates if name does not exist
     def validate_name2(form, field):
         exists = Expenditures.query.filter_by(name=field.data).first()
         if exists != None:
             raise ValidationError()
 
+# Edit Income Form
 class EditIn(FlaskForm) :
     editName = StringField('editName', validators=[DataRequired(), Length(min=0, max=20)])
     newName = StringField('newName', validators=[DataRequired()])
@@ -33,12 +37,14 @@ class EditIn(FlaskForm) :
                            validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     submit2 = SubmitField('Submit') 
 
+    # Validates if the new name does not exist
     def validate_newName(self, field):
         exists = Incomes.query.filter_by(name=field.data).first()
         if field.data != self.editName.data:
             if exists != None:
                 raise ValidationError()
 
+# Edit Expenditure Form
 class EditEx(FlaskForm) :
     editName2 = StringField('editName2', validators=[DataRequired(), Length(min=0, max=20)])
     newName2 = StringField('newName2', validators=[DataRequired()])
@@ -46,27 +52,32 @@ class EditEx(FlaskForm) :
                            validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     submit4 = SubmitField('Submit')
 
+    # Validates that new name does not exist
     def validate_newName2(self, field):
         exists = Expenditures.query.filter_by(name=field.data).first()
         if field.data != self.editName2.data:
             if exists != None:
                 raise ValidationError()
     
+# Add Goal Form
 class addGoal(FlaskForm) :
     goalName = StringField('goalName')
     goalAmount = DecimalField('goalAmount', places=2, rounding=None, 
                               validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     
+    # Validate there is not a goal
     def validate_goalAmount(form, field):
         exists = Goals.query.filter_by().first()
         if exists != None:
             raise ValidationError()
-    
+
+# Edit Goal Form  
 class editGoal(FlaskForm) :
     editGoal = StringField('editGoal')
     editGoalAmount = DecimalField('editGoalAmount', places=2, rounding=None,
                                   validators=[DataRequired(), NumberRange(min=0, max=10000000)])
     
+    # Validates goal does not exist
     def validate_editGoalAmount(form, field):
         exists = Goals.query.filter_by().first()
         if exists == None:

@@ -2,6 +2,7 @@
 {% block content %}
 <br><br>
 
+  <!--Total-->
   <section class="singleCol" tabindex="1">
     <h2>Total</h2>
     {% if needZeroTot %}
@@ -21,6 +22,7 @@
       {% else %}
         <p>£{{ inTotal }}</p>
       {% endif %}
+    <!--Displays message if no income data-->
     {% else %}
       <div class="noData">
         <strong>No data in income database</strong>
@@ -39,6 +41,7 @@
       {% else %}
         <p>£{{ exTotal }}</p>
       {% endif %}
+    <!--Displays message if no expenditure data-->
     {% else %} 
       <div class="noData">
         <strong>No data in expenditure database</strong>
