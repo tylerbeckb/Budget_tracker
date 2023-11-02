@@ -1,7 +1,7 @@
 from app.models import Incomes, Expenditures, Goals
 from flask import render_template, request, redirect, url_for
 from app import app, db
-from .forms import IncomeForm, ExpenditureForm, EditIn, EditEx, addGoal, editGoal
+from .forms import IncomeForm, ExpenditureForm, EditIn, EditEx, AddGoal, EditGoal
 
 
 @app.route('/')
@@ -184,8 +184,8 @@ def goals():
     # Variables and models
     needZero = False
 
-    goalForm = addGoal()
-    editGoalForm = editGoal()
+    goalForm = AddGoal()
+    editGoalForm = EditGoal()
     goals = Goals.query.all()
     goalRecord = Goals.query.filter_by().first()
 
