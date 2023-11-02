@@ -15,21 +15,34 @@
   <section class="halfCol centre" tabindex="2">
     <h2>Total Incomes</h2>
     <!--Checks if an extra zero on the end if needed-->
-    {% if needZero %}
-      <p>£{{ inTotal }}0</p>
+    {% if inTotal > 0 %}
+      {% if needZero %}
+        <p>£{{ inTotal }}0</p>
+      {% else %}
+        <p>£{{ inTotal }}</p>
+      {% endif %}
     {% else %}
-      <p>£{{ inTotal }}</p>
+      <div class="noData">
+        <strong>No data in income database</strong>
+      </div>
     {% endif %}
+
   </section>
 
   <!--Total expenditures-->
   <section class="halfCol centre" tabindex="2">
     <h2>Total Expenditures</h2>
     <!--Checks if an extra zero on the end if needed-->
-    {% if needZeroEx %}
-      <p>£{{ exTotal }}0</p>
-    {% else %}
-      <p>£{{ exTotal }}</p>
+    {% if exTotal > 0 %}
+      {% if needZeroEx %}
+        <p>£{{ exTotal }}0</p>
+      {% else %}
+        <p>£{{ exTotal }}</p>
+      {% endif %}
+    {% else %} 
+      <div class="noData">
+        <strong>No data in expenditure database</strong>
+      </div>
     {% endif %}
   </section>
 
